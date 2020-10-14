@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { postAuthor, resetErrors } from "./redux/actions/index";
-
+const initialAuthor = {
+  first_name: "",
+  last_name: "",
+  imageUrl: "",
+  books: [],
+};
 const AuthorForm = (props) => {
-  const [author, setAuthor] = useState({
-    first_name: "",
-    last_name: "",
-    imageUrl: "",
-    books: [],
-  });
-
+  const [author, setAuthor] = useState(initialAuthor);
+  const handleChange = (event) => {
+    setAuthor({ ...author, [event.target.name]: event.target.value });
+  };
   useEffect(() => {
     return () => {
       if (props.errors.length) props.resetErrors();
@@ -38,19 +40,34 @@ const AuthorForm = (props) => {
           <div className="input-group-prepend">
             <span className="input-group-text">First Name</span>
           </div>
-          <input type="text" className="form-control" name="first_name" />
+          <input
+            type="text"
+            className="form-control"
+            name="first_name"
+            onChange={handleChange}
+          />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">Last Name</span>
           </div>
-          <input type="text" className="form-control" name="last_name" />
+          <input
+            type="text"
+            className="form-control"
+            name="last_name"
+            onChange={handleChange}
+          />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">Image URL</span>
           </div>
-          <input type="text" className="form-control" name="imageUrl" />
+          <input
+            type="text"
+            className="form-control"
+            name="imageUrl"
+            onChange={handleChange}
+          />
         </div>
         <input type="submit" />
       </form>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 // Components
+import AddBookModal from "./AddBookModal";
 import BookTable from "./BookTable";
 import Loading from "./Loading";
 
@@ -30,6 +31,7 @@ const AuthorDetail = (props) => {
           />
         </div>
         <BookTable books={author.books} />
+        <AddBookModal author={author} />
       </div>
     );
   }
